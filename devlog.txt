@@ -1,0 +1,4 @@
+10/29/21 - Design doc changes
+
+- We assigned the tasks to different members
+- We fixed the user entries and single entry urls
