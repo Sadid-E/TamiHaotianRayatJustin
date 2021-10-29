@@ -22,6 +22,11 @@ def display_entry():
 
 @app.route('/entry/<blog_entry_id>/edit', methods=['GET', 'POST'])
 def display_entry_edit():
+    if request.method == 'POST':
+        text = request.form['entry']
+        # write_entry_to_db(text, request.args['blog_entry_id'])
+        redirect('/entry/' + request.args['blog_entry_id'])
+    # return render_template('entry_edit.html', text = get_entry_from_db(request.args['blog_entry_id']))
     return 'Hello'
 
 if __name__ == '__main__':
