@@ -20,7 +20,11 @@ def display_login():
 
 @app.route('/blog/<user_id>', methods=['GET', 'POST'])
 def display_user_blog():
-    return 'Hello'
+    return render_template(
+        'blog.html',
+        username = 'Test Username',
+        entries = [{'name': 'Name 0', 'text': 'Test text'}, {'name': 'Name 1', 'text': 'stuff'}]
+    )
 
 @app.route('/entry/<blog_entry_id>', methods=['GET', 'POST'])
 def display_entry():

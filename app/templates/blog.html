@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <title> {{ username }}'s Blog </title>
+  </head>
+
+  <body>
+
+    <h3>{{ username }}'s Blog</h3>
+
+    {% for entry in entries %}
+    <div>
+      <a href='{{ entry['url'] }}'>{{ entry['name'] }}</a>
+    </div>
+    {% endif %}
+
+  </body>
+
+</html>
