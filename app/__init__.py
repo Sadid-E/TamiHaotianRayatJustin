@@ -10,7 +10,13 @@ def display_home():
 
 @app.route('/login', methods=['GET', 'POST'])
 def display_login():
-    return 'Hello'
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form
+
+    return render_template(
+        'login.html'
+    )
 
 @app.route('/blog/<user_id>', methods=['GET', 'POST'])
 def display_user_blog():
@@ -18,7 +24,12 @@ def display_user_blog():
 
 @app.route('/entry/<blog_entry_id>', methods=['GET', 'POST'])
 def display_entry():
-    return 'Hello'
+    return render_template(
+        'entry.html',
+        entry_name = 'Test Name',
+        entry_user = 'Test User',
+        full_entry = ['Line 0', 'Line 1', 'Line 2']
+    )
 
 @app.route('/entry/<blog_entry_id>/edit', methods=['GET', 'POST'])
 def display_entry_edit():
