@@ -4,11 +4,9 @@ import os
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
 
-@app.route('/', methods=['GET', 'POST'])
-def display_home():
-    return 'Hello'
 
-@app.route('/login', methods=['GET', 'POST'])
+
+@app.route('/', methods=['GET', 'POST'])
 def display_login():
     if request.method == 'POST':
         username = request.form['username']
@@ -17,6 +15,10 @@ def display_login():
     return render_template(
         'login.html'
     )
+
+@app.route('/register', methods=['GET','POST'])
+def register_user():
+    return 'hello'
 
 @app.route('/blog/<user_id>', methods=['GET', 'POST'])
 def display_user_blog(user_id):
