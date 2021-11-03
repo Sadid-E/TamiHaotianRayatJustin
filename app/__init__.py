@@ -4,11 +4,9 @@ import os
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
 
-@app.route('/', methods=['GET', 'POST'])
-def display_home():
-    return 'Hello'
 
-@app.route('/login', methods=['GET', 'POST'])
+
+@app.route('/', methods=['GET', 'POST'])
 def display_login():
     if request.method == 'POST':
         username = request.form['username']
@@ -18,16 +16,20 @@ def display_login():
         'login.html'
     )
 
+@app.route('/register', methods=['GET','POST'])
+def register_user():
+    return 'hello'
+
 @app.route('/blog/<user_id>', methods=['GET', 'POST'])
-def display_user_blog():
+def display_user_blog(user_id):
     return render_template(
         'blog.html',
         username = 'Test Username',
-        entries = [{'name': 'Name 0', 'text': 'Test text'}, {'name': 'Name 1', 'text': 'stuff'}]
+        entries = [{'name': 'Name 0', 'text': 'Test text', 'url': '/entry/0'}, {'name': 'Name 1', 'text': 'stuff', 'url': '/entry/1'}]
     )
 
 @app.route('/entry/<blog_entry_id>', methods=['GET', 'POST'])
-def display_entry():
+def display_entry(blog_entry_id):
     return render_template(
         'entry.html',
         entry_name = 'Test Name',
@@ -36,11 +38,11 @@ def display_entry():
     )
 
 @app.route('/entry/<blog_entry_id>/edit', methods=['GET', 'POST'])
-def display_entry_edit():
+def display_entry_edit(blog_entry_id):
     if request.method == 'POST':
         text = request.form['entry']
         # write_entry_to_db(text, request.args['blog_entry_id'])
-        redirect('/entry/' + request.args['blog_entry_id'])
+        redirect('/entry/' + blog_entry_id)
     # return render_template('entry_edit.html', text = get_entry_from_db(request.args['blog_entry_id']))
     return 'Hello'
 

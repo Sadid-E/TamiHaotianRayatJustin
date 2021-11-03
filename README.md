@@ -5,6 +5,7 @@ Enter the following commands
 ```
 git clone git@github.com:haotianGan/TamiHaotianRayatJustin.git
 cd TamiHaotianRayatJustin
+pip install -r requirements.txt
 cd app
 python3 __init__.py
 ```
