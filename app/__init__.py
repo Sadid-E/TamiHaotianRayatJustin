@@ -18,7 +18,21 @@ def display_login():
 
 @app.route('/register', methods=['GET','POST'])
 def register_user():
-    return 'hello'
+    if(request.method == 'POST'):
+        username = request.form['username']
+        password = request.form['password']
+        confirm = request.form['confirm']
+        if(str(password) == str(confirm)):
+            print('test')
+            # write_user_to_db(username, password)'
+        else:
+            print(password)
+            print(confirm)
+    else:
+        redirect('/')
+    return render_template(
+        'register.html'
+    )
 
 @app.route('/blog/<user_id>', methods=['GET', 'POST'])
 def display_user_blog(user_id):
