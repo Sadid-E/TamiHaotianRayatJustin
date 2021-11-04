@@ -36,7 +36,7 @@ def register_user():
                 )
         elif(str(password) == str(confirm)):
             print('test')
-            # write_user_to_db(username, password)'
+            database.create_user(username, password)'
     print(incorrect)
     return render_template(
         'register.html',
