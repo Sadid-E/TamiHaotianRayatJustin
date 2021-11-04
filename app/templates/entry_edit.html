@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <title> Editing {{ entry_name }} </title>
+  </head>
+
+  <body>
+    
+    <h3>{{ entry_name }}</h3>
+    <h4>By {{ entry_user }}</h4>
+
+    <form action=" /entry/{{ entry_id }}/edit " method = "post">
+    
+    <p> Edit post: <br> </p>
+    <input type="text" name="entry" value={{ entry_text }}>
+    <input type="submit" name="sub">
+    
+    </form>
+
+  </body>
+
+</html>
