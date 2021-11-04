@@ -43,10 +43,6 @@ def register_user():
         'register.html',
         incorrect = False
     )
-    return render_template(
-        'register.html',
-        incorrect = False
-    )
 @app.route('/blog/<user_id>', methods=['GET', 'POST'])
 def display_user_blog(user_id):
     return render_template(
