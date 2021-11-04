@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, session, redirect
 import os
+import database
 
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
@@ -8,6 +9,8 @@ app.secret_key = os.urandom(32)
 
 @app.route('/', methods=['GET', 'POST'])
 def display_login():
+    database.create_tables()
+
     if request.method == 'POST':
         username = request.form['username']
         password = request.form
@@ -23,8 +26,7 @@ def register_user():
         password = request.form['password']
         confirm = request.form['confirm']
         if(str(password) == str(confirm)):
-            print('test')
-            # write_user_to_db(username, password)'
+            database.create_user(username, password)
         else:
             print(password)
             print(confirm)
