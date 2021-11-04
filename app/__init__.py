@@ -20,7 +20,6 @@ def display_login():
     )
 
 @app.route('/register', methods=['GET','POST'])
-@app.route('/register', methods=['GET','POST'])
 def register_user():
     password = ''
     confirm = ''
