@@ -17,23 +17,29 @@ def display_login():
     )
 
 @app.route('/register', methods=['GET','POST'])
+@app.route('/register', methods=['GET','POST'])
 def register_user():
+    password = ''
+    confirm = ''
+    incorrect = False
     if(request.method == 'POST'):
         username = request.form['username']
         password = request.form['password']
         confirm = request.form['confirm']
-        if(str(password) == str(confirm)):
+        if(str(password) != str(confirm) or password == '' or confirm == ''):
+            print("hi")
+            return render_template(
+                'register.html',
+                incorrect = True
+                )
+        elif(str(password) == str(confirm)):
             print('test')
             # write_user_to_db(username, password)'
-        else:
-            print(password)
-            print(confirm)
-    else:
-        redirect('/')
+    print(incorrect)
     return render_template(
-        'register.html'
+        'register.html',
+        incorrect = False
     )
-
 @app.route('/blog/<user_id>', methods=['GET', 'POST'])
 def display_user_blog(user_id):
     return render_template(
@@ -56,7 +62,7 @@ def display_entry_edit(blog_entry_id):
     if request.method == 'POST':
         text = request.form['entry']
         # write_entry_to_db(text, request.args['blog_entry_id'])
-        redirect('/entry/' + blog_entry_id)
+        return redirect('/entry/' + blog_entry_id)
     # return render_template('entry_edit.html', text = get_entry_from_db(request.args['blog_entry_id']))
     return 'Hello'
 
