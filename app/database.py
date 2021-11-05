@@ -82,4 +82,12 @@ def get_user_entries(user_id):
     c.execute(command)
 
     entries = c.fetchall()
-    print(entries)
+    return entries
+
+def get_entry_text(filename):
+    entry_text = ''
+    with open(filename) as f:
+        lines = f.readlines()
+        for line in lines:
+            entry_text += line + '\n'
+    return entry_text
