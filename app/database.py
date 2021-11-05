@@ -60,3 +60,13 @@ def create_user(name, password):
 
     db.commit() #save changes
     db.close()
+
+def get_user_entries(user_id):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+
+    command = f'SELECT * FROM entries WHERE user_id = {user_id};'
+    c.execute(command)
+
+    entries = c.fetchall()
+    print(entries)
