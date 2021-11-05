@@ -61,6 +61,19 @@ def create_user(name, password):
     db.commit() #save changes
     db.close()
 
+def authenticate_user(username, password):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+
+    command = f'SELECT * FROM users WHERE name = "{username}" AND password = "{password}";'
+    c.execute(command)
+
+    users = c.fetchall()
+    if len(users) > 0:
+        return users[0][0]
+    else:
+        return -1
+
 def get_user_entries(user_id):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
