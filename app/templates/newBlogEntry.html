@@ -2,22 +2,22 @@
 
 <html>
   <head>
-    <title>Editing Post</title>
+    <title>Create a Post</title>
   </head>
 
   <body>
-    <h3>Edit Your Post:</h3>
-    <form action="/entry/{{ entry_id }}/edit " method="post">
+    <h3>Create a Post:</h3>
+    <form action="/blog/newBlogEntry" method="post">
       <p>Post Title:</p>
-      <textarea name="title">{{title}}</textarea>
+      <textarea name="title"></textarea>
       <br />
       <p>Post Body:</p>
-      <textarea name="entry_text">{{entry_text}}</textarea>
+      <textarea name="entry_text"></textarea>
       <p></p>
       <input type="submit" name="sub" />
     </form>
     <p>
-      <a href="/entry/{{ entry_id }}"
+      <a href="/blog/{{ user_id }}"
         >Forget this. Discard my draft and take me back.</a
       >
     </p>

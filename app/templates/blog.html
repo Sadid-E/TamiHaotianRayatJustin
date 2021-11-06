@@ -1,21 +1,28 @@
 <!DOCTYPE html>
 
 <html>
-
   <head>
-    <title> {{ username }}'s Blog </title>
+    <title>{{ username }}'s Blog</title>
   </head>
 
   <body>
-
-    <h3>{{ username }}'s Blog</h3>
-
+    <h1>{{ username }}'s Blog</h1>
+    {% if lookingAtOwnBlog %}
+    <a href="/blog/newBlogEntry" style="color: green">Create a New Post</a>
+    {% endif %}
+    <hr />
+    <h2>{{ username }}'s Posts:</h2>
     {% for entry in entries %}
-    <div>
-      <a href='{{ entry['url'] }}'>{{ entry['name'] }}</a>
-    </div>
+    <h2>
+      <a href="/entry/{{entry['entry_id']}}">{{ entry['title'] }}</a>
+    </h2>
+    <p>{{entry['entry_text'][0:200] + "..."}}</p>
+    <form action="/entry/delete" method="post">
+      <button type="submit" name="entry_id" value="{{entry['entry_id']}}">
+        Delete
+      </button>
+    </form>
+    <hr />
     {% endfor %}
-
   </body>
-
 </html>
