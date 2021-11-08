@@ -5,7 +5,6 @@ db = sqlite3.connect(DB_FILE, check_same_thread=False)
 
 
 def create_tables():
-
     c = db.cursor()
     command = 'CREATE TABLE IF NOT EXISTS entries (entry_id INTEGER PRIMARY KEY, title TEXT, entry_text TEXT, user_id INTEGER)'          # test SQL stmt in sqlite3 shell, save as string
     c.execute(command)    # run SQL statement
@@ -18,9 +17,9 @@ def create_tables():
 def create_user(username, password):
     c = db.cursor()
     c.execute(f'INSERT INTO users (username, password) VALUES (?, ?);', (username, password))
-    db.commit() 
-    
-def add_entry(title, entry_text, user_id): 
+    db.commit()
+
+def add_entry(title, entry_text, user_id):
     c = db.cursor()
     c.execute(f'INSERT INTO entries (title, entry_text, user_id) VALUES (?, ?, ?)', (title, entry_text, user_id))
     db.commit() #save changes
@@ -29,13 +28,11 @@ def edit_entry(entry_id, entry_text, title):
     c = db.cursor()
     c.execute(f'UPDATE entries SET entry_text = ?, title = ? where entry_id == ?', (entry_text, title, entry_id))
     db.commit()
-    return
 
 def delete_entry(entry_id):
     c = db.cursor()
     c.execute(f'delete from entries where entry_id == ?', (entry_id, ))
     db.commit()
-    return
 
 def get_entry(entry_id):
     c = db.cursor()
@@ -83,12 +80,3 @@ def getMostRecentEntry(user_id):
 
 def printEverything():
     print(list(db.cursor().execute("select * from entries")))
-
-
-
-
-
-
-
-
-

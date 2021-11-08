@@ -9,10 +9,11 @@ database.create_tables()
 
 @app.route('/', methods=['GET', 'POST'])
 def display_login():
+    database.create_tables()
     if(session.get("user_id") == None):
-        return redirect("/login") 
+        return redirect("/login")
     return render_template(
-        'home.html', user_id=session.get("user_id"), 
+        'home.html', user_id=session.get("user_id"),
     )
 
 @app.route('/logout', methods=['GET'])
@@ -49,25 +50,25 @@ def register_user():
         password = request.form['password']
         confirm = request.form['confirm']
         if(str(password) != str(confirm) or password == '' or confirm == ''):
-            return render_template('register.html', error = True, 
+            return render_template('register.html', error = True,
                 error_message="Your passwords didn't match :(")
         elif(str(password) == str(confirm)):
             try:
                 session['user_id'] = database.create_user(username, password)
                 return redirect("/")
             except IntegrityError:
-                return render_template('register.html', error = True, 
+                return render_template('register.html', error = True,
                 error_message="That username is already taken. Please pick another one.")
             except Exception:
-                return render_template('register.html', error = True, 
+                return render_template('register.html', error = True,
                 error_message="Sorry, something went wrong on our end. Please try registering later.")
-    
+
     return render_template(
         'register.html'
     )
 @app.route('/blog/<int:user_id>', methods=['GET', 'POST'])
 def display_user_blog(user_id):
-    
+
     templateArgs = {
         "entries" : database.get_entries_of_user(user_id, 0, 50),
         "username" : database.get_username_from_id(user_id),
@@ -80,7 +81,7 @@ def display_user_blog(user_id):
 
 @app.route('/entry/<int:entry_id>', methods=['GET', 'POST'])
 def display_entry(entry_id):
-    template_args = database.get_entry(entry_id) 
+    template_args = database.get_entry(entry_id)
     template_args["username"] = database.get_username_from_id(template_args["user_id"])
     template_args["original_author"] = session.get("user_id") == template_args["user_id"]
     print(session.get("user_id"))
@@ -100,7 +101,7 @@ def create_new_entry():
         database.add_entry(new_title, new_entry_text, user_id)
 
         #This assumes that the entry_id of the one we just added to the database, is the user's most recent entry
-        assumed_entry_id = database.getMostRecentEntry(user_id)["entry_id"] 
+        assumed_entry_id = database.getMostRecentEntry(user_id)["entry_id"]
         return redirect(f"/entry/{assumed_entry_id}")
     return render_template("newBlogEntry.html", user_id=session.get("user_id"))
 
@@ -118,7 +119,7 @@ def display_entry_edit(entry_id):
         return redirect(f"/entry/{entry_id}")
     if request.method == 'GET':
         templateArgs = database.get_entry(entry_id)
-        return render_template('entry_edit.html', **templateArgs)    
+        return render_template('entry_edit.html', **templateArgs)
 
 @app.route('/entry/delete', methods=['POST'])
 def delete():
@@ -132,7 +133,7 @@ def delete():
 
     database.delete_entry(entry_id)
     return redirect(f"/blog/{user_id}")
-    
+
 
 if __name__ == '__main__':
     app.debug = True
