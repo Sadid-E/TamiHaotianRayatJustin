@@ -2,3 +2,19 @@
 
 - We assigned the tasks to different members
 - We fixed the user entries and single entry urls
+
+11/15 - (HaotianG) Database, Registration, Login, Finished Creating/Editing/Deleting New Posts Functionality
+- Added functions to database.py for creating, deleting, editing posts
+- Modfiied existing pages so that they use the database
+- Added session authentication 
+  - The client sends his username / password as plaintext to the server
+  - Server checks the database to see if they match an existing user
+  - If it matches, then the server sets the user's session cookie to the user's user_id in the database
+  - The session cookie is used to check if the user is signed in or not
+  - If the user is not signed in on a page where he should be, then he is redirected
+- Modified registration so displays errors for if the username is already taken
+- Every user has their own blog page now
+
+Some more notes:
+- row_id is used to determine which blog entries are most recent. We could store a unix time date if we wanted to, instead
+- the website will crash if you look up something that doesn't exist, like a non existent user blog post or entry. I will fix this later

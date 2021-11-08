@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 
 <html>
-
   <head>
-    <title> LOGIN PAGE </title>
+    <title>login</title>
   </head>
 
   <body>
-    <h3>
-      Enter your username and password below.
-    </h3>
-    <form action="/" method="post">
-      <p>Username: <br></p>
-      <input type="text" name="username"><br> <!-- Username field -->
-      <p>Password: <br></p>
-      <input type="password" name="password"><br><br> <!-- Password field -->
-      <input type="submit" name="sub1">
+    <h3>Enter your username and password below.</h3>
+    {% if error %}
+    <p style="color: red">Your credentials did not match our records</p>
+    {% endif %}
+    <form action="/login" method="post">
+      <p>Username: <br /></p>
+      <input type="text" name="username" /><br />
+      <!-- Username field -->
+      <p>Password: <br /></p>
+      <input type="password" name="password" /><br /><br />
+      <!-- Password field -->
+      <input type="submit" name="sub1" />
     </form>
-    <br>
-    <a href= "/register">register</a>
+    <p><a href="/register">New user?</a></p>
+    <br />
   </body>
-
 </html>

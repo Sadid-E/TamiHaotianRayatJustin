@@ -1,29 +1,30 @@
 <!DOCTYPE html>
 
 <html>
-
   <head>
-    <title> REGISTRATION PAGE </title>
+    <title>Register</title>
   </head>
 
   <body>
-    <h3>
-      Enter your username and password below.
-    </h3>
+    <h3>Enter your username and password below.</h3>
     <form action="/register" method="post">
-      <p>Username: <br></p>
-      <input type="text" name="username"><br> <!-- Username field -->
-      <p>Password: <br></p>
-      <input type="password" name="password"><br><br> <!-- Password field -->
-      <p>Confirm password: <br></p> <!-- confirming password -->
-      <input type="password" name="confirm"><br><br> 
-      <input type="submit" name="sub1">
+      <p>Username: <br /></p>
+      <input type="text" name="username" /><br />
+      <!-- Username field -->
+      <p>Password: <br /></p>
+      <input type="password" name="password" /><br /><br />
+      <!-- Password field -->
+      <p>Confirm password: <br /></p>
+      <!-- confirming password -->
+      <input type="password" name="confirm" /><br /><br />
+      <input type="submit" name="sub1" />
     </form>
-    <a href= "/">Return to login page</a>
-    <br>
-    {% if incorrect == True %}
-      Passwords do not match or have not been entered
+    <br />
+    <a href="/">Return to login page</a>
+    <br />
+
+    {% if error %}
+    <p>{{error_message}}</p>
     {% endif %}
   </body>
-
 </html>
