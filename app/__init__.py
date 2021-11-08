@@ -13,7 +13,9 @@ def display_login():
 
     if request.method == 'POST':
         username = request.form['username']
-        password = request.form
+        password = request.form['password']
+        print(database.authenticate_user(username, password))
+        
 
     return render_template(
         'login.html'
@@ -63,7 +65,7 @@ def display_entry(blog_entry_id):
 def display_entry_edit(blog_entry_id):
     if request.method == 'POST':
         text = request.form['entry']
-        # write_entry_to_db(text, request.args['blog_entry_id'])
+        #write_entry_to_db('Title', text, blog_entry_id)
         return redirect('/entry/' + blog_entry_id)
     # return render_template('entry_edit.html', text = get_entry_from_db(request.args['blog_entry_id']))
     return 'Hello'
