@@ -5,6 +5,7 @@ import database
 
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
+database.create_tables()
 
 @app.route('/', methods=['GET', 'POST'])
 def display_login():
