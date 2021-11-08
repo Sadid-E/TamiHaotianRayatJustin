@@ -13,33 +13,26 @@ def create_tables():
     c.execute(command)
 
     db.commit() #save changes
-    db.save()
 
 def create_user(username, password):
     c = db.cursor()
     c.execute(f'INSERT INTO users (username, password) VALUES (?, ?);', (username, password))
     db.commit()
-    db.save()
 
 def add_entry(title, entry_text, user_id):
     c = db.cursor()
     c.execute(f'INSERT INTO entries (title, entry_text, user_id) VALUES (?, ?, ?)', (title, entry_text, user_id))
     db.commit() #save changes
-    db.save()
 
 def edit_entry(entry_id, entry_text, title):
     c = db.cursor()
     c.execute(f'UPDATE entries SET entry_text = ?, title = ? where entry_id == ?', (entry_text, title, entry_id))
     db.commit()
-    db.save()
-    return
 
 def delete_entry(entry_id):
     c = db.cursor()
     c.execute(f'delete from entries where entry_id == ?', (entry_id, ))
     db.commit()
-    db.save()
-    return
 
 def get_entry(entry_id):
     c = db.cursor()
