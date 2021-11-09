@@ -9,7 +9,8 @@ database.create_tables()
 
 @app.route('/', methods=['GET', 'POST'])
 def display_login():
-    if (not session.get("user_id")):
+    """Initial page, redirects user to their homepage if they are logged in, to the login page if they are not"""
+    if(session.get("user_id") == None):
         return redirect("/login")
     return render_template(
         'home.html', user_id=session.get("user_id"),
@@ -17,11 +18,13 @@ def display_login():
 
 @app.route('/logout', methods=['GET'])
 def logout():
+    """Removes session info, user won't see generally"""
     session.clear()
     return redirect('/login')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    """Page for user to log in to their blog, initializes cookie authentication, displays incorrect info message if user info is not present"""
     if(session.get("user_id")):
         return redirect("/")
     if request.method == 'POST':
@@ -40,6 +43,8 @@ def login():
 
 @app.route('/register', methods=['GET','POST'])
 def register_user():
+    """Allows user to register an account with a username and password. Error handling for passwords not matching,
+    username already being taken"""
     if(session.get("user_id")):
         return redirect("/")
     password = ''
@@ -50,7 +55,9 @@ def register_user():
         confirm = request.form['confirm']
         if(str(password) != str(confirm) or password == '' or confirm == ''):
             return render_template('register.html', error = True,
-                error_message="Your passwords didn't match :(")
+                error_message="Your passwords didn't match or were blank :(")
+        if(username == ''):
+            return render_template('register.html', error = True, error_message="Blank usernames are not allowed")
         elif(str(password) == str(confirm)):
             try:
                 session['user_id'] = database.create_user(username, password)
@@ -58,6 +65,7 @@ def register_user():
             except IntegrityError:
                 return render_template('register.html', error = True,
                 error_message="That username is already taken. Please pick another one.")
+
             except Exception:
                 return render_template('register.html', error = True,
                 error_message="Sorry, something went wrong on our end. Please try registering later.")
@@ -97,7 +105,10 @@ def create_new_entry():
         user_id = session.get("user_id")
         new_entry_text = request.form.get('entry_text')
         new_title = request.form.get('title')
-        database.add_entry(new_title, new_entry_text, user_id)
+        if(new_title != ''):
+            database.add_entry(new_title, new_entry_text, user_id)
+        else:
+            return redirect('/blog/newBlogEntry')
 
         #This assumes that the entry_id of the one we just added to the database, is the user's most recent entry
         assumed_entry_id = database.getMostRecentEntry(user_id)["entry_id"]
