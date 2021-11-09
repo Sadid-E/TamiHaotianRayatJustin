@@ -2,6 +2,7 @@
 
 <html>
   <head>
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles.css') }}">
     <title>login</title>
   </head>
 
@@ -11,11 +12,16 @@
     <p style="color: red">Your credentials did not match our records</p>
     {% endif %}
     <form action="/login" method="post">
-      <p>Username: <br /></p>
-      <input type="text" name="username" /><br />
+      <div class="centerFlex">
+        <p style="margin-right: 40px;">Username</p>
+        <input type="text" name="username"/><br />
+      </div>
       <!-- Username field -->
-      <p>Password: <br /></p>
-      <input type="password" name="password" /><br /><br />
+
+      <div class="centerFlex">
+        <p style="margin-right: 40px;">Password</p>
+        <input type="password" name="password" /><br /><br />
+      </div>
       <!-- Password field -->
       <input type="submit" name="sub1" />
     </form>
