@@ -9,7 +9,7 @@ database.create_tables()
 
 @app.route('/', methods=['GET', 'POST'])
 def display_login():
-    if(session.get("user_id") == None):
+    if (not session.get("user_id")):
         return redirect("/login")
     return render_template(
         'home.html', user_id=session.get("user_id"),
