@@ -1,0 +1,39 @@
+body {
+  padding: 30px;
+}
+
+@font-face{
+  font-family: MajorMonoDisplay;
+  src: url('MajorMonoDisplay-Regular.ttf');
+}
+
+@font-face{
+  font-family: Nunito-Light;
+  src: url('Nunito-Light.ttf');
+}
+
+h1 {
+  font-family: MajorMonoDisplay;
+}
+
+h2 {
+  font-family: MajorMonoDisplay;
+}
+
+h3 {
+  font-family: MajorMonoDisplay;
+}
+
+h4 {
+
+}
+
+p {
+  font-family: Nunito-Light;
+}
+
+.centerFlex {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
