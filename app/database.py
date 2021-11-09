@@ -80,3 +80,19 @@ def getMostRecentEntry(user_id):
 
 def printEverything():
     print(list(db.cursor().execute("select * from entries")))
+    
+def get_users():
+    c = db.cursor()
+    rows = c.execute('SELECT COUNT(*) FROM users)')
+    if(rows < 10):
+        return db.cursor('SELECT user_id FROM users')
+    generated = []
+    for i in range(10):
+        u = random.randint(1,rows - 1)
+        for j in range(len(generated)):
+            if(generated[j]==u):
+                i--;
+                break;
+            if(j==len(generated) - 1):
+                generated.append(u)
+    return(generated)
