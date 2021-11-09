@@ -91,7 +91,7 @@ def get_users():
         u = random.randint(1,rows - 1)
         for j in range(len(generated)):
             if(generated[j]==u):
-                i--;
+                i = i-1
                 break;
             if(j==len(generated) - 1):
                 generated.append(u)
