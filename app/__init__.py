@@ -13,7 +13,7 @@ def display_login():
     if(session.get("user_id") == None):
         return redirect("/login")
     return render_template(
-        'home.html', user_id=session.get("user_id"),
+        'home.html', user_id=session.get("user_id"), random_users=database.get_random_users()
     )
 
 @app.route('/logout', methods=['GET'])
