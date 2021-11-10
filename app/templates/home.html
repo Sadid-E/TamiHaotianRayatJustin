@@ -10,5 +10,13 @@
     <p>You are logged in. Welcome to the blog site</p>
     <a href="/logout">Log Out</a>
     <a href="/blog/{{user_id}}">Visit Your Blog Page</a>
+    <h4>Suggested Blogs:</h4>
+    {% for user in random_users %}
+    <p>
+      <a href="/blog/{{user['user_id']}}"
+        >{{user['username'] + "'s Blog Page"}}</a
+      >
+    </p>
+    {% endfor %}
   </body>
 </html>

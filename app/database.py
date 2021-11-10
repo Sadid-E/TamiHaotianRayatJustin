@@ -82,9 +82,15 @@ def getMostRecentEntry(user_id):
 def printEverything():
     print(list(db.cursor().execute("select * from entries")))
 
-def get_random_userids():
+def get_random_users():
     c = db.cursor()
     rows = list(c.execute('SELECT COUNT(*) FROM users'))[0][0]
-    
     population_count = 10 if rows >= 10 else rows
-    return random.sample(range(1,rows+1), population_count)
+    user_ids = random.sample(range(1,rows+1), population_count)
+    usernames = [get_username_from_id(user_id) for user_id in user_ids]
+    return [
+        {
+            'username': username,
+            'user_id': user_id
+        } 
+    for (username, user_id) in zip(usernames, user_ids)]
