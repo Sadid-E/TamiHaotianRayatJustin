@@ -1,5 +1,7 @@
-body {
-  padding: 30px;
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
 @font-face{
@@ -36,7 +38,7 @@ p {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .textInput {
@@ -45,6 +47,8 @@ p {
   border-style: none none solid none;
   border-width: 2px;
   border-color: powderblue;
+  width: 100%;
+  margin: 15px 0;
 }
 
 .button {
