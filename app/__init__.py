@@ -128,6 +128,8 @@ def display_entry_edit(entry_id):
             return "Sorry, you can't modify this blog post if you aren't its author."
         new_entry_text = request.form.get('entry_text')
         new_title = request.form.get('title')
+        database.edit_entry(entry_id, new_entry_text, new_title)
+        return redirect(f"/entry/{entry_id}")
     if request.method == 'GET':
         templateArgs = database.get_entry(entry_id)
         return render_template('entry_edit.html', **templateArgs) #displays the text boxes with current text and title of the post already displayed
