@@ -36,4 +36,26 @@ p {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
+}
+
+.textInput {
+  font-size: 16px;
+  font-family: Nunito-Light;
+  border-style: none none solid none;
+  border-width: 2px;
+  border-color: powderblue;
+}
+
+.button {
+  font-family: Nunito-Light;
+  padding: 5px 10px;
+  color: black;
+  background-color: white;
+  border: 1px solid black;
+}
+
+.button:hover {
+  background-color: black;
+  color: white;
 }
