@@ -13,7 +13,7 @@ def display_login():
     if(session.get("user_id") == None):
         return redirect("/login")
     return render_template(
-        'home.html', user_id=session.get("user_id"),
+        'home.html', user_id=session.get("user_id"), #if logged in, gets a session id and redirects to homepage
     )
 
 @app.route('/logout', methods=['GET'])
@@ -30,12 +30,12 @@ def login():
     if request.method == 'POST':
         username = request.form.get("username")
         password = request.form.get("password")
-        user_id = database.authenticate(username, password)
+        user_id = database.authenticate(username, password) #Checks login against database info -- see authenticate in database.py
         if(user_id):
             session["user_id"] = user_id #Cookie based authentication (user is identified by his client id)
             return redirect("/")
         else:
-            return render_template('login.html', error=True)
+            return render_template('login.html', error=True) #displays to the user if the login info doesn't match any entry
 
     return render_template(
         'login.html'
@@ -46,13 +46,14 @@ def register_user():
     """Allows user to register an account with a username and password. Error handling for passwords not matching,
     username already being taken"""
     if(session.get("user_id")):
-        return redirect("/")
+        return redirect("/") #send them to the homepage if they are logged in
     password = ''
     confirm = ''
     if(request.method == 'POST'):
         username = request.form['username']
         password = request.form['password']
         confirm = request.form['confirm']
+        #Exception handling for blank or taken usernames, blank passwords, passwords not matching, or general errors
         if(str(password) != str(confirm) or password == '' or confirm == ''):
             return render_template('register.html', error = True,
                 error_message="Your passwords didn't match or were blank :(")
@@ -75,11 +76,11 @@ def register_user():
     )
 @app.route('/blog/<int:user_id>', methods=['GET', 'POST'])
 def display_user_blog(user_id):
-
+    """Displays all entires of a user. Tracks if the user is the same one that is logged in"""
     templateArgs = {
-        "entries" : database.get_entries_of_user(user_id, 0, 50),
-        "username" : database.get_username_from_id(user_id),
-        "lookingAtOwnBlog": session.get("user_id") == user_id
+        "entries" : database.get_entries_of_user(user_id, 0, 50), #see get_entries_of_user in database.py
+        "username" : database.get_username_from_id(user_id),#see get_username_from_id in database.py
+        "lookingAtOwnBlog": session.get("user_id") == user_id #session authentication for the user
     }
     return render_template(
         'blog.html',
@@ -88,10 +89,10 @@ def display_user_blog(user_id):
 
 @app.route('/entry/<int:entry_id>', methods=['GET', 'POST'])
 def display_entry(entry_id):
-    template_args = database.get_entry(entry_id)
+    """Displays an entry of another user's blog to the user"""
+    template_args = database.get_entry(entry_id) #see get_entry in database.py
     template_args["username"] = database.get_username_from_id(template_args["user_id"])
-    template_args["original_author"] = session.get("user_id") == template_args["user_id"]
-    print(session.get("user_id"))
+    template_args["original_author"] = session.get("user_id") == template_args["user_id"] #logic check if the user currently viewing a blog is viewing their own blog
     return render_template(
         'entry.html',
         **template_args
@@ -99,14 +100,15 @@ def display_entry(entry_id):
 
 @app.route('/blog/newBlogEntry', methods=['GET', 'POST'])
 def create_new_entry():
+    """Allows the user to create a new blog entry"""
     if(session.get("user_id") == None):
-        return redirect("/")
+        return redirect("/") #if a non-logged in user gets here, redirect them to the login page
     if(request.method == 'POST'):
         user_id = session.get("user_id")
         new_entry_text = request.form.get('entry_text')
         new_title = request.form.get('title')
-        if(new_title != ''):
-            database.add_entry(new_title, new_entry_text, user_id)
+        if(new_title != ''): #can't have blank title
+            database.add_entry(new_title, new_entry_text, user_id) #see add_entry in database.py
         else:
             return redirect('/blog/newBlogEntry')
 
@@ -117,6 +119,7 @@ def create_new_entry():
 
 @app.route('/entry/<int:entry_id>/edit', methods=['GET', 'POST'])
 def display_entry_edit(entry_id):
+    """Allows a user to edit their own entry"""
     if(session.get("user_id") == None):
         return redirect("/")
     if request.method == 'POST':
@@ -125,23 +128,22 @@ def display_entry_edit(entry_id):
             return "Sorry, you can't modify this blog post if you aren't its author."
         new_entry_text = request.form.get('entry_text')
         new_title = request.form.get('title')
-        database.edit_entry(entry_id, new_entry_text, new_title)
-        return redirect(f"/entry/{entry_id}")
     if request.method == 'GET':
         templateArgs = database.get_entry(entry_id)
-        return render_template('entry_edit.html', **templateArgs)
+        return render_template('entry_edit.html', **templateArgs) #displays the text boxes with current text and title of the post already displayed
 
 @app.route('/entry/delete', methods=['POST'])
 def delete():
+    """Removes a user's blog entry"""
     if(session.get("user_id") == None):
         return redirect("/")
     entry_id = request.form["entry_id"]
-    author_id = database.get_entry(entry_id)["user_id"]
+    author_id = database.get_entry(entry_id)["user_id"] #see get_entry in database.py
     user_id = session.get("user_id")
     if(not author_id == user_id):
         return "Sorry, you can't modify this blog post if you aren't its author."
 
-    database.delete_entry(entry_id)
+    database.delete_entry(entry_id) #see delete_entry in database.py
     return redirect(f"/blog/{user_id}")
 
 
