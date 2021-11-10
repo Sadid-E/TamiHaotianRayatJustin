@@ -12,18 +12,19 @@
     <p style="color: red">Your credentials did not match our records</p>
     {% endif %}
     <form action="/login" method="post">
-      <div class="centerFlex">
-        <p style="margin-right: 40px;">Username</p>
-        <input type="text" name="username"/><br />
-      </div>
-      <!-- Username field -->
+      <div style="display: flex; flex-direction: column; align-items: stretch; justify-content: center;">
+        <!-- Username field -->
+        <div style="margin: 10px 0;" class="centerFlex">
+          <input type="text" name="username" placeholder="Enter your username" class="textInput"/><br />
+        </div>
 
-      <div class="centerFlex">
-        <p style="margin-right: 40px;">Password</p>
-        <input type="password" name="password" /><br /><br />
+        <!-- Password field -->
+        <div style="margin: 10px 0;" class="centerFlex">
+          <input type="password" name="password" placeholder="Enter your password" class="textInput"/><br /><br />
+        </div>
       </div>
-      <!-- Password field -->
-      <input type="submit" name="sub1" />
+
+      <input type="submit" name="sub1" class="button" style="margin-top: 20px;" />
     </form>
     <p><a href="/register">New user?</a></p>
     <br />
