@@ -1,4 +1,5 @@
 import sqlite3   #enable control of an sqlite database
+import random
 
 DB_FILE='database.db'
 db = sqlite3.connect(DB_FILE, check_same_thread=False)
@@ -81,18 +82,9 @@ def getMostRecentEntry(user_id):
 def printEverything():
     print(list(db.cursor().execute("select * from entries")))
 
-def get_users():
+def get_random_userids():
     c = db.cursor()
-    rows = c.execute('SELECT COUNT(*) FROM users)')
-    if(rows < 10):
-        return db.cursor('SELECT user_id FROM users')
-    generated = []
-    for i in range(10):
-        u = random.randint(1,rows - 1)
-        for j in range(len(generated)):
-            if(generated[j]==u):
-                i -= 1
-                break
-            if(j==len(generated) - 1):
-                generated.append(u)
-    return(generated)
+    rows = list(c.execute('SELECT COUNT(*) FROM users'))[0][0]
+    
+    population_count = 10 if rows >= 10 else rows
+    return random.sample(range(1,rows+1), population_count)
