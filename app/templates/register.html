@@ -2,29 +2,55 @@
 
 <html>
   <head>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static',filename='styles.css') }}"
+    />
     <title>Register</title>
   </head>
 
   <body>
-    <h3>Enter your username and password below.</h3>
-    <form action="/register" method="post">
-      <p>Username: <br /></p>
-      <input type="text" name="username" /><br />
-      <!-- Username field -->
-      <p>Password: <br /></p>
-      <input type="password" name="password" /><br /><br />
-      <!-- Password field -->
-      <p>Confirm password: <br /></p>
-      <!-- confirming password -->
-      <input type="password" name="confirm" /><br /><br />
-      <input type="submit" name="sub1" />
-    </form>
-    <br />
-    <a href="/">Return to login page</a>
-    <br />
+    <div class="centerFillFlex">
+      <h3>Enter your username and password below.</h3>
+      <form action="/register" method="post">
+        <!-- Username field -->
+        <input
+            type="text"
+            name="username"
+            placeholder="Enter your username"
+            class="textInput"
+            style="margin-top: 20px"
+          />
+        <!-- Password field -->
+        <input
+          type="password"
+          name="password"
+          placeholder="Enter your password"
+          class="textInput"
+        />
+        <!-- Confirm Password field -->
+        <input
+          type="password"
+          name="confirm"
+          placeholder="Confirm your password"
+          class="textInput"
+        />
+        <div class="centerFlex" style="width: 100%">
+          <input
+            type="submit"
+            name="sub1"
+            class="button"
+            style="margin-top: 20px"
+          />
+        </div>
+      </form>
+      <br />
+      <a href="/"><p>Return to login page</p></a>
+      <br />
 
-    {% if error %}
-    <p>{{error_message}}</p>
-    {% endif %}
+      {% if error %}
+      <p style="color: red;">{{error_message}}</p>
+      {% endif %}
+    </div>
   </body>
 </html>
