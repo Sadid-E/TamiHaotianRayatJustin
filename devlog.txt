@@ -83,5 +83,6 @@ Some more notes:
 11/11/2021 (TamiT)
 - Styling for home page
 
-
+11/11/21 - (RayatR) Docstrings and comments
+- added docstrings and comments to database.py
 
