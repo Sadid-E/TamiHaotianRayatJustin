@@ -1,9 +1,42 @@
-10/29/21 - Design doc changes
-
+10/29/21 - (TamiT) Design doc changes
 - We assigned the tasks to different members
-- We fixed the user entries and single entry urls
+- We fixed the user entries and single entry urls in our design doc
 
-11/15 - (HaotianG) Database, Registration, Login, Finished Creating/Editing/Deleting New Posts Functionality
+10/29/21 - (RayatR) Updated Readme
+- Updated readme to have launch codes and fixed readme markup
+
+10/29/21 - (TamiT)
+- Added temporary login page
+- Added empty htmls for each route
+- Added form handling
+- Fixed merge conflicts
+- Added new routes in the design doc
+
+11/1/2021 - (RayatR, JustinM)
+- Added html for registration page
+
+11/1/2021 - (TamiT, JustinM)
+- Added empty database python file
+- Added blog template
+- Added entry page
+- Added requirements.txt
+
+11/2/2021 - (TamiT)
+- Added line in readme for getting requirements setup
+
+11/3/2021 (TamiT)
+- Added function in database.py for creating tables
+
+11/3/2021 (RayatR)
+- Worked on registration page and error checking for registration page
+
+11/4/2021 (TamiT, JustinM)
+- Worked on database.py functions for adding entries. 
+
+11/4/2021 (RayatR)
+- Working version  of registration completed
+
+11/6 - (HaotianG) Database, Registration, Login, Finished Creating/Editing/Deleting New Posts Functionality
 - Added functions to database.py for creating, deleting, editing posts
 - Modfiied existing pages so that they use the database
 - Added session authentication 
@@ -18,3 +51,34 @@
 Some more notes:
 - row_id is used to determine which blog entries are most recent. We could store a unix time date if we wanted to, instead
 - the website will crash if you look up something that doesn't exist, like a non existent user blog post or entry. I will fix this later
+- Used "QMark" style in database.py for mysqllite3 commands
+
+11/8/2021 (HaotianG and TamiT and JustinM)
+- Fixed database not being created on app run
+- Changed design doc
+- Minor fixes to database.py
+
+11/9/2021 (TamiT) 
+- Added login page CSS
+- Fix merge conflicts
+- Added some fonts
+
+11/9/2021 (RayatR and JustinM)
+- Worked on get random users function
+
+11/10/2021 (HaotianG, RayatR, TamiT)
+- Finished get random users function
+- Added random user suggestions to main page
+- Deleted unncessary files
+- Added more styling for website
+- Centered login page
+
+11/11/2021 (RayatR)
+- Added homepage links
+
+11/11/2021 (HaotianG and JustinM)
+- Error handling to prevent web app crashing
+- 404 page
+
+
+
