@@ -4,19 +4,27 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static',filename='styles.css') }}"
+    />
     <title>Document</title>
   </head>
   <body>
-    <p>You are logged in. Welcome to the blog site</p>
-    <a href="/logout">Log Out</a>
-    <a href="/blog/{{user_id}}">Visit Your Blog Page</a>
-    <h4>Suggested Blogs:</h4>
-    {% for user in random_users %}
-    <p>
-      <a href="/blog/{{user['user_id']}}"
-        >{{user['username'] + "'s Blog Page"}}</a
-      >
-    </p>
-    {% endfor %}
+    <div class="centerFillFlex">
+      <h2>You are logged in. Welcome to the blog site!</h2>
+      <a href="/logout"><p>Log Out</p></a>
+      <a href="/blog/{{user_id}}"><p>Visit Your Blog Page</p></a>
+      <h3>Suggested Blogs:</h3>
+      {% for user in random_users %}
+      <div class="blueBox">
+        <p>
+          <a href="/blog/{{user['user_id']}}" style="text-decoration: none;"
+            >{{user['username'] + "'s Blog Page"}}</a
+          >
+        </p>
+      </div>
+      {% endfor %}
+    </div>
   </body>
 </html>
