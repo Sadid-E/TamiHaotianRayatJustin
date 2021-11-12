@@ -80,5 +80,8 @@ Some more notes:
 - Error handling to prevent web app crashing
 - 404 page
 
+11/11/2021 (TamiT)
+- Styling for home page
+
 
 
