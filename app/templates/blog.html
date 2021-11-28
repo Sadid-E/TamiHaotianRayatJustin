@@ -1,3 +1,11 @@
+<!--
+Sadid Ethun
+SoftDev
+K20 -- Throw Some Forking STUYLE On It / CSS Styling / Adding CSS to other groups P0
+2021-11-21
+time spent: 0.5
+-->
+
 <!DOCTYPE html>
 
 <html>
@@ -14,13 +22,13 @@
       <a href="/"><p>Return to Homepage</p></a>
       <h1>{{ username }}'s Blog</h1>
       {% if lookingAtOwnBlog %}
-      <a href="/blog/newBlogEntry" style="color: green"><p>Create a New Post</p></a>
+      <a href="/blog/newBlogEntry" id="create"><p>Create a New Post</p></a>
       {% endif %}
       <hr />
       <h2>{{ username }}'s Posts:</h2>
       {% for entry in entries %}
       <h2>
-        <a href="/entry/{{entry['entry_id']}}">{{ entry['title'] }}</a>
+        <a href="/entry/{{entry['entry_id']}}" id="posts">{{ entry['title'] }}</a>
       </h2>
       <p>{{entry['entry_text'][0:200] + "..."}}</p>
       {% if lookingAtOwnBlog %}

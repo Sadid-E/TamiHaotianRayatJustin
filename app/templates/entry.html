@@ -1,3 +1,11 @@
+<!--
+Sadid Ethun
+SoftDev
+K20 -- Throw Some Forking STUYLE On It / CSS Styling / Adding CSS to other groups P0
+2021-11-21
+time spent: 0.5
+-->
+
 <!DOCTYPE html>
 
 <html>
@@ -15,11 +23,11 @@
       <h3>{{ title }}</h3>
       {% if original_author %}
       <h4>
-        By <a href="/blog/{{user_id}}">{{ username }}</a>
+        By <a href="/blog/{{user_id}}" id="creator">{{ username }}</a>
         <a href="/entry/{{entry_id}}/edit">(Edit Your Post)</a>
       </h4>
       {% else %}
-      <h4>By <a href="/blog/{{user_id}}">{{ username }}</a></h4>
+      <h4>By <a href="/blog/{{user_id}}" id="creator">{{ username }}</a></h4>
       {% endif %}
       <div style="width: 80%;">
         <p>{{entry_text}}</p>

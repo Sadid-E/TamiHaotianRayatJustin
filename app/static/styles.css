@@ -1,88 +1,47 @@
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-}
+/*
+Sadid Ethun
+SoftDev
+K20 -- Throw Some Forking STUYLE On It / CSS Styling / Adding CSS to other groups P0
+2021-11-21
+time spent: 0.5
+*/
 
-@font-face{
-  font-family: MajorMonoDisplay;
-  src: url('MajorMonoDisplay-Regular.ttf');
+html {
+  font-size: 20px;
 }
-
-@font-face{
-  font-family: Nunito-Light;
-  src: url('Nunito-Light.ttf');
+body {
+  background-color: #E2DBBE;
 }
-
-h1 {
-  font-family: MajorMonoDisplay;
-}
-
-h2 {
-  font-family: MajorMonoDisplay;
-}
-
-h3 {
-  font-family: MajorMonoDisplay;
-}
-
-h4 {
-  font-family: MajorMonoDisplay;
-}
-
-p {
-  font-family: Nunito-Light;
-}
-
-textarea {
-  font-family: Nunito-Light; 
-  border: 2px solid powderblue; 
-  resize: none;
-}
-
-.centerFlex {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-
-.blueBox {
-  background-color: powderblue; 
-  padding: 5px; 
-  border-radius: 10px; 
-  margin: 10px 0; 
-  width: 80%;
-}
-
-.centerFillFlex {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.textInput {
-  font-size: 16px;
-  font-family: Nunito-Light;
-  border-style: none none solid none;
-  border-width: 2px;
-  border-color: powderblue;
-  width: 100%;
-  margin: 15px 0;
-}
-
-.button {
-  font-family: Nunito-Light;
-  padding: 5px 10px;
+a:link, a:visited, #create {
+  background-color: #769fb6;
   color: black;
-  background-color: white;
-  border: 1px solid black;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 25px;
 }
-
-.button:hover {
-  background-color: black;
-  color: white;
+input[type=submit], button {
+  background-color: #EDC7CF;
+  color: black;
+  width: 20%;
+  padding: 12px 20px;
+  border-radius: 25px;
+}
+input[type=text], input[type=password] {
+  width: 20%;
+  padding: 12px 20px;
+  border-radius: 25px;
+}
+input {
+  font-size: 20px;
+}
+#blogs, #posts, #creator {
+  background-color: #9dbbae;
+  color: black;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 25px;
 }
